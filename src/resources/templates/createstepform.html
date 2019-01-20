@@ -1,0 +1,28 @@
+<form id="createstepform" class="createform">
+	<fieldset>
+		<label for="new_station_title">Titel:</label> <input type="text"
+			id="new_station_title" placeholder="Titel des Schritts"> <label
+			for="new_station_description">Beschreibung:</label> <input
+			type="text" id="new_station_description"
+			placeholder="Beschreibung des Schritts">
+		<button id="new_station_submit" type="submit">Erstellen</button>
+	</fieldset>
+
+	<script type="text/javascript">
+	$("#createstepform").submit(function(e){
+			e.preventDefault();
+			createStationSubmit();
+			setTimeout(function(){
+				document.getElementById("new_station_title" ).value="";
+				document.getElementById("new_station_description" ).value="";
+			}, 2000);
+			
+			
+		});
+	function createStationSubmit() {
+			var title = document.getElementById("new_station_title").value;
+			var description = document.getElementById("new_station_description").value;
+			createStation(title, description, 0);
+		}
+	</script>
+</form>

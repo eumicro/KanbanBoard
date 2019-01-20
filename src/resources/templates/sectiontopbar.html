@@ -1,0 +1,25 @@
+<nav id="sectiontopbar">
+	<a>
+		<span class="fa fa-trello"></span>
+		<select id="board_list"></select>
+	</a>
+	<a onclick="createBoard()">+</a> 
+	<span> 
+		<a onclick="undoAction()">undo bild</a> 
+		<a onclick="redoAction()">redo bild</a> 
+	</span> 
+	<script type="text/javascript">
+		function writeListToSelect(data) {
+			var items;
+			console.log(data);
+			$.each(data, function(key, val) {
+				items+="<option onclick=\"getBoard(this.id);\" id='" + key + "'>" + val + "</option>";
+			});
+			document.getElementById("board_list").innerHTML=items;		
+			console.log(items);
+			}
+		// fetch data
+		$.getJSON("kanban?get_user_boards=42").done(writeListToSelect).fail(function(){console.log("fail!")});
+
+	</script>
+</nav>

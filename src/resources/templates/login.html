@@ -1,0 +1,22 @@
+<form id="login_form">
+	<label for="login_user_name">Benutzername</label> 
+	<input id="login_user_name" type="text" required="required" on" autofocus="autofocus" placeholder="Benutzername"> 
+	<label for="login_user_password">Passwort</label>
+	<input id="login_user_password" required="required" type="password">
+	<button id="login_button" type="submit">
+		<span class="fa fa-unlock"></span> 
+		<a>Anmelden</a>
+	</button>
+	<script type="text/javascript">
+	$('#login_form').submit(function(e){
+			e.preventDefault();
+			loginSubmit();
+				
+	});
+	function loginSubmit() {	
+								var username = $("#login_user_name").val();
+								var password = $("#login_user_password").val();
+								logIn(username, password);
+							}
+	</script>
+</form>

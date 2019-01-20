@@ -1,0 +1,33 @@
+<form id="createtaskform" class="createform">
+	<fieldset>
+		<label for="new_task_title">Titel:</label><input id="new_task_title" type="text" placeholder="Titel der Aufgabe" autofocus="autofocus">
+		<label for="new_task_description">Beschreibung:</label>
+		<input id="new_task_description" type="text" placeholder="Beschreibung der Aufgabe" height="60px">
+		<label for="new_task_assignee">Person zuweisen:</label>
+		<select id="new_task_assignee_list"></select><br>
+		<span>
+			<label for="new_task_color">Farbe:</label>
+			<input id="new_task_color" type="color" value="#FFFFFF"></input>
+		</span>
+		<button id="new_task_submit" type="submit">Erstellen</button>
+	</fieldset>
+	<script type="text/javascript">
+		$("#createtaskform").submit(function(e){
+			e.preventDefault();
+			createTaskSubmit();
+			setTimeout(function(){
+				document.getElementById("new_task_title" ).value="";
+				document.getElementById("new_task_description" ).value="";
+			}, 2000);
+		});
+		function createTaskSubmit() {
+			var title = document.getElementById("new_task_title").value;
+			var description = document.getElementById("new_task_description").value;
+			//assignee_id list will be updated in kanbanboard.js (setCurrentBoard(board_id))...
+			var assignee_id = document.getElementById("new_task_assignee_list").options[document.getElementById("new_task_assignee_list").selectedIndex].id.replace("u","");
+			var color = document.getElementById("new_task_color").value;
+			
+			createTask(title,description,assignee_id,color);
+		}
+	</script>
+</form>

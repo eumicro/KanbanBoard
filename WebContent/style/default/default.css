@@ -1,0 +1,22 @@
+/*==========================================================
+*	Stylesheet for the website KanbanTafel
+*
+*	file: 	screen.css
+*	author: eugen, mark
+*	
+*==========================================================*/
+
+/*	
+*	layout and element dimensions for certain devices
+*/
+
+/*
+* 	PC and Laptop
+*/
+	@import "devices/screen.css";
+
+
+/*
+*	For smartphones Portrait
+*/
+	@import "devices/smartphone_portrait.css" only screen and (max-width:800px );	

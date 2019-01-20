@@ -1,0 +1,33 @@
+<form id="createboardform" class="createform">
+	<fieldset>
+		<label for="new_board_title">Titel:</label><input id="new_board_title" type="text" placeholder="Titel der Tafel">
+		<label for="new_board_description">Beschreibung:</label><input id="new_board_description" type="text" placeholder="Beschreibung der Tafel">
+		<label for="new_board_template">Vorlage:</label><select id="new_board_template">
+			<!-- TODO: wird spÃ¤ter dynamisch gefÃ¼llt -->
+			<option value="1" selected="selected">Einfache Tafel (3 St.)</option>
+			<option value="0">Scrum Tafel (4. St.)</option>
+			<option value="-1">Keine Vorlage</option>
+		</select>
+		<button id="new_board_submit_button" type="submit">Erstellen</button>
+		
+		<script type="text/javascript">
+		$('#createboardform').submit(function(e){
+			e.preventDefault();
+			createBoardSubmit();
+			setTimeout(function(){
+				document.getElementById("new_board_title" ).value="";
+				document.getElementById("new_board_description" ).value="";
+			}, 2000);
+			
+			
+		});
+		function createBoardSubmit() {
+			var title = document.getElementById("new_board_title").value;
+			var description = document.getElementById("new_board_description").value;
+			var templatenumber = document.getElementById("new_board_template").value;
+
+			createBoard(title, description,templatenumber);
+		}
+		</script>
+	</fieldset>
+</form>

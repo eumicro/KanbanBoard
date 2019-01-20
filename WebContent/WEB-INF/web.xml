@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Kanban</display-name>
+  <welcome-file-list>
+    <welcome-file>/</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>KanbanManagementServlet</display-name>
+    <servlet-name>KanbanManagementServlet</servlet-name>
+    <servlet-class>org.kanban.presenter.kanbanmanagement.KanbanManagementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KanbanManagementServlet</servlet-name>
+    <url-pattern>/kanbanmanagement</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>UserManagementServlet</display-name>
+    <servlet-name>UserManagementServlet</servlet-name>
+    <servlet-class>org.kanban.presenter.usermanagement.UserManagementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserManagementServlet</servlet-name>
+    <url-pattern>/usermanagement</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>UserManagementFilter</display-name>
+    <filter-name>UserManagementFilter</filter-name>
+    <filter-class>org.kanban.presenter.usermanagement.UserManagementFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UserManagementFilter</filter-name>
+    <url-pattern>/</url-pattern>
+  </filter-mapping>
+  
+</web-app>

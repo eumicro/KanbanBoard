@@ -1,0 +1,97 @@
+<form id="register_form" class="createform">
+	<h2>Registrieren</h2>
+
+	<fieldset>
+		<label for="register_name">Benutzername</label> <input
+			required="required" id="register_name" placeholder="Benutzername">
+		<output id="input_check_info_register_name"></output>
+		<label for="register_password">Passwort</label> <input
+			required="required" id="register_password" type="password">
+		<output id="input_check_info_register_password"></output>
+		<label for="register_password_repeat">Passwort wiederholen</label> <input
+			required="required" id="register_password_repeat" type="password">
+		<output id="input_check_info_register_password_repeat"></output>
+		<button type="submit" id="register_submit" disabled="disabled">
+			<span class="fa fa-user-plus"></span> <span> Benutzer
+				erstellen</span>
+		</button>
+
+	</fieldset>
+
+	<h2>oder mit Google</h2>
+	<fieldset>
+
+
+		<div class="g-signin2 button_google" data-onsuccess="onSignIn"></div>
+
+		<script type="text/javascript">
+			$('#register_form').submit(function(e) {
+				e.preventDefault();
+				registerSubmit();
+				
+			});
+			// Google Sign-In
+			function onSignIn(googleUser) {
+				var profile = googleUser.getBasicProfile();
+				var password = "4242";//googleUser.getAuthResponse().id_token.substring(0,31);
+				if (profile.getId() != null) {
+					var username = profile.getEmail();
+					var isRegistredUser = isUser(username);
+					if (isRegistredUser == true) {
+						console.log("log in google user");
+						logIn(username, password);
+					} else if (isRegistredUser == false) {
+						console.log("register google user");
+						createUser(username, password);
+					} 
+
+				}
+			}
+		</script>
+	</fieldset>
+	<script type="text/javascript">
+		setSubmitDisabled(true);
+		$("#register_name").keyup(validate_name);
+		$("#register_password_repeat").keyup(validate_password);
+		$("#register_password").keyup(validate_password);
+		function setSubmitDisabled(disabled) {
+			$("#register_submit").prop("disabled", disabled);
+		}
+		function validate_name() {
+			var username = $("#register_name").val();
+			var password1 = $("#register_password").val();
+			var password2 = $("#register_password_repeat").val();
+			console.log("validate username : " + username + " " + password1
+					+ " " + password2);
+			if (username.length<4 || username.length >32) {
+				document.getElementById("input_check_info_register_name").innerHTML = "Der Benutzername muss zwischen 2 und 32 Zeichen lang sein!";
+				// TODO: check if user exists!!!!!!!!!!
+			} else {
+				document.getElementById("input_check_info_register_name").innerHTML = "";
+			}
+			setSubmitDisabled(!isValidInput(username, password1, password2));
+		}
+		function validate_password() {
+			var username = $("#register_name").val();
+			var password1 = $("#register_password").val();
+			var password2 = $("#register_password_repeat").val();
+			console.log("validate pass : " + username + " " + password1 + " "
+					+ password2);
+			if ((password1.length<2 || password1.length>64)
+					|| password1 != password2) {
+				document
+						.getElementById("input_check_info_register_password_repeat").innerHTML = "Die Passwortfelder dürfen nicht leer sein und müssen übereinstimmen!";
+			} else {
+				document
+						.getElementById("input_check_info_register_password_repeat").innerHTML = "";
+			}
+			var isValid = isValidInput(username, password1, password2);
+			setSubmitDisabled(!isValid);
+		}
+		function registerSubmit() {
+			var username = $("#register_name").val();
+			var password = $("#register_password").val();
+			createUser(username, password);
+		}
+	</script>
+</form>

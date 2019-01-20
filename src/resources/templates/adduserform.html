@@ -1,0 +1,80 @@
+<form id="add_user_form" class="createform">
+	
+	<fieldset>
+		<label for="add_user_field">Benutzername:</label> 
+		<input id="add_user_field" list="add_user_list" name="suggested_users" placeholder="Name des neuen Teilnehmers">
+		<datalist id="add_user_list">
+			<!-- data comes here with jquery -->
+		</datalist>
+		<button id="add_user_submit" type="submit">Hinzufügen</button>
+	</fieldset>
+	<ul id="board_user_list">
+			<!-- user list comes here with jquery -->
+	</ul>
+	<script type="text/javascript">
+		// submit listener
+		
+		$('#add_user_form').submit(function(e){
+			e.preventDefault();
+			inviteUser();
+			setTimeout(function(){
+				document.getElementById("add_user_field").value="";
+			}, 2000);
+			
+			
+		});
+		// key listener
+
+		$('#add_user_field').keyup(
+				function() {
+					var board_id = currentBoard.id;//$('.board').attr("id").replace("b", "");
+					var name = $('#add_user_field').val();
+					var user_options = new Array();
+					var suggestions = $('#add_user_list');
+					// get users as JSON
+					$.getJSON(
+							"http://" + window.location.host
+					+"/kanbanmanagement?get_users_like_name="
+									+ name).done(
+							function(users) {
+								suggestions.empty();
+								$.each(users,
+										function(i, user) {
+
+											var user_option = document
+													.createElement("option");
+											user_option.setAttribute("id",
+													user.userId);
+											user_option.setAttribute("value",
+													user.name);
+											user_option.innerHTML = user.name;
+											user_option[i] = user_option;
+											suggestions.append(user_option);
+										});
+							}).fail(handleJsonError);
+
+				}
+
+		);
+		function inviteUser() {
+					var username = $('#add_user_field').val();
+					var board_id = currentBoard.id;
+					$.getJSON(
+							document.URL
+									+ "kanbanmanagement?invite_user_to_board="
+									+ username + "&board_id=" + board_id).done(
+							function(data) {
+								if (data.error===true) {
+									messagePopup("ERROR", "Fehler",
+											data.message);
+								} else {
+									messagePopup("INFO", "Benutzer hinzufügen",
+											data.message);
+								}
+								
+
+							}).fail(handleJsonError);
+				}
+	</script>
+
+</form>

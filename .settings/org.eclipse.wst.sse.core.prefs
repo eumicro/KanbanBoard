@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+task-tags/enabled=true
+task-tags/ignored-contentTypes=org.eclipse.jst.jsp.core.jspsource
+task-tags/taskPriorities=1,2,1,2
+task-tags/taskTags=TODO,FIXME,XXX,TOREVIEW
+task-tags/use-project-settings=true

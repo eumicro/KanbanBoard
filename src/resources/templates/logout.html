@@ -1,0 +1,21 @@
+<nav id="user_information">
+	<p>
+		<b id="user_name_info">Bitte warten...</b>
+	</p>
+	<p>
+		<button id="logout_button" type="button" onclick="logout()">
+			<span class="fa fa-power-off"></span> <span>Abmelden</span>
+		</button>
+		<button id="delete_user_button" type="button"
+			onclick="deleteUserPrompt()">
+			<span class="fa fa-user-times"></span> <span>Konto löschen</span>
+		</button>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	</p>
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			document.getElementById("user_name_info").innerHTML = username;
+		});
+	</script>
+</nav>

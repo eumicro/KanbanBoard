@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="google-signin-client_id" content="309565317253-tqpjje8pld9hk76mrbkvidciqrapfan0.apps.googleusercontent.com">
+<title></title>
+<!--[if lte IE 9]>
+<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.0/jquery.xdomainrequest.min.js'></script>
+<![endif]-->
+</head>
+<body>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
+
+</html>
+
+<script type="text/javascript">
+		$(this).next().slideToggle();
+		$("#rightnavi toggled_slide").not($(this).next()).slideUp();
+		$('#rightnavi').find('button').click(function() {
+			$("#rightnavi").find('button').not($(this)).next().slideUp();
+			$(this).next().slideToggle();
+			
+		});
+</script>

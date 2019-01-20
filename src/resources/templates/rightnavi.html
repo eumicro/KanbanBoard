@@ -1,0 +1,74 @@
+<aside id="rightnavi">
+	<button id="menu_button" class="topnavi_elements">
+		<span class="fa fa-navicon" alt="Menu"></span>
+		<span></span>
+	</button>
+	<ul id="menu_ul">
+		<li id="create_board_item" title="CTRL-ALT-B">
+			<button class="slide_button" >
+				<span class="fa fa-trello"></span> 
+				<span >Tafel erstellen</span>
+				<span class="toggle-down fa fa-toggle-down"></span>
+			</button>
+			<div id="create_board_form" class="toggled_slide">
+				<!-- hier nichts einfuegen -->
+			</div>
+		</li>
+		<li id="create_station_item" title="CTRL-ALT-S">
+			<button  class="slide_button">
+				<span class="fa fa-tasks" style="transform:rotate(270deg)"></span> 
+				<span>Schritt hinzufügen</span>
+				<span class="toggle-down fa fa-toggle-down"></span> 
+			</button>
+			<div id="add_station_form" class="toggled_slide">
+				<!-- hier nichts einfuegen -->
+			</div>
+		</li>
+		<li id="create_task_item" title="CTRL-ALT-T">
+			<button class="slide_button">
+				<span class="fa fa-server"></span> 
+				<span>Aufgabe hinzufügen</span>
+				<span class="toggle-down fa fa-toggle-down"></span>
+			</button>
+			<div id="add_task_form" class="toggled_slide">
+				<!-- hier nichts einfuegen -->
+			</div>
+		</li>
+		<li id="manage_users_item">
+			<button  class="slide_button">
+				<span class="fa fa-user-plus"></span> 
+				<span>Teilnehmer verwalten</span>
+				<span class="toggle-down fa fa-toggle-down"></span>
+			</button>
+			<div id="add_user_form" class="toggled_slide">
+				<!-- hier nichts einfuegen -->
+			</div>
+			<div id="list_user" class="toggled_slide">
+				<!-- hier nichts einfuegen -->
+			</div>
+		</li>
+		<li id="activities_item">
+			<button  class="slide_button">
+				<span class="fa fa-history"></span> 
+				<span>Verlauf</span>
+				<span class="toggle-down fa fa-toggle-down"></span>
+			</button>
+			<div id="board_activity_list">
+				<!-- hier kommt das Log hin -->
+			</div>
+		</li>
+
+	</ul>
+	
+	<script src="/javascript/navigation.js"></script>
+	
+	<script type="text/javascript">
+		$(this).next().slideToggle();
+		$("#rightnavi toggled_slide").not($(this).next()).slideUp();
+		$('#rightnavi').find('.slide_button').click(function() {
+			$("#rightnavi").find('.slide_button').not($(this)).next().slideUp();
+			$(this).next().slideToggle();
+			$(this).next().find('input').first().focus();
+		});
+	</script>
+</aside>
